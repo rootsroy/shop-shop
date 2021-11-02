@@ -14,7 +14,6 @@ import Signup from "./pages/Signup";
 import OrderHistory from "./pages/OrderHistory";
 import Success from "./pages/Success";
 
-// import { StoreProvider } from './utils/GlobalState';
 import store from "./utils/store";
 
 const client = new ApolloClient({

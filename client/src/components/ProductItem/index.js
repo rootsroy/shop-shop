@@ -10,9 +10,7 @@ function ProductItem(item) {
   const { image, name, _id, price, quantity } = item;
 
   const dispatch = useDispatch();
-  const state = useSelector((state) => state);
-
-  const { cart } = state;
+  const cart = useSelector((state) => state.cart);
 
   const addToCart = () => {
     // find the cart item with the matching id

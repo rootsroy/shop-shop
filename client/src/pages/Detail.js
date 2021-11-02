@@ -18,8 +18,8 @@ import spinner from "../assets/spinner.gif";
 
 function Detail() {
   const dispatch = useDispatch();
-  const state = useState();
-  const { products, cart } = state;
+  const products = useSelector((state) => state.products);
+  const cart = useSelector((state) => state.cart);
   const { id } = useParams();
 
   const [currentProduct, setCurrentProduct] = useState({});
