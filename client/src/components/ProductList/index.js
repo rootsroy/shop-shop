@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux;";
+import { useDispatch, useSelector } from "react-redux";
 import { useQuery } from "@apollo/react-hooks";
 
 import ProductItem from "../ProductItem";
@@ -10,7 +10,7 @@ import spinner from "../../assets/spinner.gif";
 
 function ProductList() {
   const dispatch = useDispatch();
-  const state = useSelector();
+  const state = useSelector((state) => state);
 
   const { currentCategory } = state;
   const { loading, data } = useQuery(QUERY_PRODUCTS);
