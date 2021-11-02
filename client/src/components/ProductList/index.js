@@ -1,21 +1,49 @@
-import React from 'react';
-import { useQuery } from '@apollo/client';
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux;";
+import { useQuery } from "@apollo/react-hooks";
 
-import ProductItem from '../ProductItem';
-import { QUERY_PRODUCTS } from '../../utils/queries';
-import spinner from '../../assets/spinner.gif';
+import ProductItem from "../ProductItem";
+import { QUERY_PRODUCTS } from "../../utils/queries";
+import { UPDATE_PRODUCTS } from "../../utils/actions";
+import { idbPromise } from "../../utils/helpers";
+import spinner from "../../assets/spinner.gif";
 
-function ProductList({ currentCategory }) {
+function ProductList() {
+  const dispatch = useDispatch();
+  const state = useSelector();
+
+  const { currentCategory } = state;
   const { loading, data } = useQuery(QUERY_PRODUCTS);
 
-  const products = data?.products || [];
+  useEffect(() => {
+    if (data) {
+      dispatch({
+        type: UPDATE_PRODUCTS,
+        products: data.products,
+      });
+
+      // save to indexedDB
+      data.products.forEach((product) => {
+        idbPromise("products", "put", product);
+      });
+    } else if (!loading) {
+      // if offline, get data from 'products' store
+      idbPromise("products", "get").then((products) => {
+        // use retrieved data to set global state for offline browsing
+        dispatch({
+          type: UPDATE_PRODUCTS,
+          products: products,
+        });
+      });
+    }
+  }, [data, loading, dispatch]);
 
   function filterProducts() {
     if (!currentCategory) {
-      return products;
+      return state.products;
     }
 
-    return products.filter(
+    return state.products.filter(
       (product) => product.category._id === currentCategory
     );
   }
@@ -23,7 +51,7 @@ function ProductList({ currentCategory }) {
   return (
     <div className="my-2">
       <h2>Our Products:</h2>
-      {products.length ? (
+      {state.products.length ? (
         <div className="flex-row">
           {filterProducts().map((product) => (
             <ProductItem
