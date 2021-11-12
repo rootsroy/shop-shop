@@ -6,7 +6,6 @@ import {
   UPDATE_CURRENT_CATEGORY,
 } from "../../utils/actions";
 import { QUERY_CATEGORIES } from "../../utils/queries";
-import { idbPromise } from "../../utils/helpers";
 
 function CategoryMenu() {
   const dispatch = useDispatch();
@@ -21,16 +20,17 @@ function CategoryMenu() {
         categories: categoryData.categories,
       });
 
-      categoryData.categories.forEach((category) => {
-        idbPromise("categories", "put", category);
-      });
+      // categoryData.categories.forEach((category) => {
+      //   idbPromise("categories", "put", category);
+      // });
     } else if (!loading) {
-      idbPromise("categories", "get").then((categories) => {
-        dispatch({
-          type: UPDATE_CATEGORIES,
-          categories: categories,
-        });
+      dispatch({
+        type: UPDATE_CATEGORIES,
+        categories: categoryData.categories,
       });
+      // idbPromise("categories", "get").then((categories) => {
+
+      // });
     }
   }, [categoryData, loading, dispatch]);
 
