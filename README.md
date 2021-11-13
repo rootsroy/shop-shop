@@ -12,7 +12,7 @@ View the deployed page at [Shop-Shop Redux](https://redux-store-roots.herokuapp.
 
 - [Installation](#Installation)
 - [Usage](#Usage)
-  - [Screenshots](#Screenshots)
+- [Screenshots](#Screenshots)
 - [Questions](#Questions)
 - [Credits](#Credits)
 
