@@ -1,12 +1,12 @@
 # Shop-Shop With Redux
 
-[![Issues]()]() [![Issues]()]()
+[![Issues](https://github.com/rootsroy/shop-shop/issues)]() [![Issues](https://github.com/rootsroy/shop-shop/issues)]()
 
 ## Description
 
 Shop Shop is a MERN stack e-commerce shop built with React-Redux and Stripe API.
 
-View the deployed page at [Shop-Shop Redux](link to deployed app).
+View the deployed page at [Shop-Shop Redux](https://redux-store-roots.herokuapp.com/).
 
 ## Contents
 
